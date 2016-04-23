@@ -25,3 +25,9 @@ body {
 	color: white;
 	font-size: 16px;
 }
+button{
+	background-color: lightblue;
+	border-style:dotted;
+	color: blue;
+}
+
