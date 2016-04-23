@@ -1,11 +1,11 @@
 body {
 	margin: 0;
 }
-div#map {
+#map {
 	width: 100%;
 	height: 100%;
 }
-div#search {
+#search {
 	background-color: white;
 	position: absolute;
 	bottom: 40px;
@@ -14,10 +14,10 @@ div#search {
 	height: auto;
 	padding: 10px;
 }
-div#search input {
+#search input {
 	width: 200px;
 }
-div#results {
+#results {
 	font-style: sans-serif;
 	color: black;
 	font-size: 75%;
