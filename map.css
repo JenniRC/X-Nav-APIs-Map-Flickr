@@ -17,9 +17,11 @@ body {
 }
 #search input {
 	width: 200px;
+	background-color: lightblue;
+	border-style:dotted;
 }
 #results {
 	font-style: sans-serif;
-	color: black;
+	color: white;
 	font-size: 16px;
 }
