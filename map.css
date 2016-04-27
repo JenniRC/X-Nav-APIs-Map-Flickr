@@ -3,7 +3,7 @@ body {
 }
 #map {
 	width: 100%;
-	height: 100%;
+	height: 60%;
 }
 #search {
 	background-color: purple;
@@ -31,3 +31,9 @@ button{
 	color: blue;
 }
 
+#pict{
+	width: 10%;
+	height: 10%;
+    display: -moz-box;
+    margin-left: 33%;
+}

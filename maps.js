@@ -1,5 +1,7 @@
 var map;
 var feature;
+var address;
+
 
 function load_map() {
 	map = new L.Map('map', {zoomControl: true});
@@ -10,12 +12,34 @@ function load_map() {
 
 	map.setView(new L.LatLng(51.538594, -0.198075), 12).addLayer(osm);
 }
+var loadPhotos = function() {
+  $("#results").empty();
+  $("#pict").empty();
+  var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+  $.getJSON( flickerAPI, {
+    tags: address,
+    tagmode: "any",
+    format: "json"
+  })
+  .done(function( data ) {
+    console.log("Success");
+    if(data.stat == "fail"){
+
+    }
+    $.each( data.items, function( i, item ) {
+      $("#pict").append('<img src="'+item.media.m+' "/>');
+      if ( i === 3 ) {
+        return false;
+      }
+    });
+  });
+};
 
 function chooseAddr(lat1, lng1, lat2, lng2, osm_type) {
 	var loc1 = new L.LatLng(lat1, lng1);
 	var loc2 = new L.LatLng(lat2, lng2);
 	var bounds = new L.LatLngBounds(loc1, loc2);
-
+  address = $("#addr").val();
 	if (feature) {
 		map.removeLayer(feature);
 	}
@@ -26,10 +50,11 @@ function chooseAddr(lat1, lng1, lat2, lng2, osm_type) {
 	} else {
 		var loc3 = new L.LatLng(lat1, lng2);
 		var loc4 = new L.LatLng(lat2, lng1);
-
 		feature = L.polyline( [loc1, loc4, loc2, loc3, loc1], {color: 'red'}).addTo(map);
 		map.fitBounds(bounds);
 	}
+          loadPhotos();
+
 }
 
 function addr_search() {
@@ -55,6 +80,7 @@ function addr_search() {
         }
     });
 }
+
 
 $(document).ready(function() {
     load_map();
